@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Prisma, User } from '@prisma/client'
 
-export interface usersRepository {
-  [x: string]: any
+export interface UsersRepository {
+  findByEmail(email: string): Promise<User | null>
   create(data: Prisma.UserCreateInput): Promise<User>
 }
