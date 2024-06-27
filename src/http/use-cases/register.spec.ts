@@ -31,7 +31,7 @@ describe('Register use Case', () => {
       password: '123456',
     })
 
-    expect(() =>
+    await expect(() =>
       registerUseCase.execute({
         name: 'John Doe',
         email,
@@ -49,6 +49,6 @@ describe('Register use Case', () => {
       email: 'jonhdoe@example.com',
       password: '123456',
     })
-expect(user.id).toEqual(expect.any(String))
-
+    expect(user.id).toEqual(expect.any(String))
+  })
 })
