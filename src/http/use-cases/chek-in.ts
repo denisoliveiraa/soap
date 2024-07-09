@@ -30,7 +30,6 @@ export class CheckinUseCase {
       throw new ResourceNotFoundError()
     }
 
-
     const checkIn = await this.checkInsRepository.create({
       gym_id: gymId,
       user_id: userId,
