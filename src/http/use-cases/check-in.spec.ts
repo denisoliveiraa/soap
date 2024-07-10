@@ -1,17 +1,17 @@
 import { InMemoryCheckInsRepository } from '../repositories/in-memory/in-memory-checkin-repositories'
 import { expect, describe, it, beforeEach, afterEach, vi } from 'vitest'
-import { CheckinUseCase } from './chek-in'
+import { CheckInUseCase } from './chek-in'
 import { InMemoryGymsRepository } from '../repositories/in-memory/in-memory-gyms-repositories'
 import { Decimal } from '@prisma/client/runtime/library'
 
 let checkInsRepository: InMemoryCheckInsRepository
-let sut: CheckinUseCase
+let sut: CheckInUseCase
 let gymsRepository: InMemoryGymsRepository
 describe('Check-in Use Case', () => {
   beforeEach(() => {
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
-    sut = new CheckinUseCase(checkInsRepository, gymsRepository)
+    sut = new CheckInUseCase(checkInsRepository, gymsRepository)
 
     vi.useFakeTimers()
   })
