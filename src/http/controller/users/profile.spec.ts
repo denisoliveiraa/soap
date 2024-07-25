@@ -11,18 +11,7 @@ describe('profile (e2e)', () => {
     await app.close()
   })
   it('Shoul be able to get user profile', async () => {
-    await request(app.server).post('/users').send({
-      name: 'Denis',
-      email: 'Denis@hotmal',
-      password: '12345',
-    })
-
-    const authReponse = await request(app.server).post('/sessions').send({
-      email: 'Denis@hotmal',
-      password: '12345',
-    })
-
-    const { token } = authReponse.body
+   
 
     const profileResponse = await request(app.server)
       .get('/me')
