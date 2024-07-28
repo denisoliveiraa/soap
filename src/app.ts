@@ -5,15 +5,20 @@ import fastifyJwt from '@fastify/jwt'
 import { usersRoutes } from './http/controller/users/routes'
 import { gymsRoutes } from './http/controller/gyms/routes'
 import { checkInsRoutes } from './http/controller/check-ins/routes'
+import fastifyCookie from '@fastify/cookie'
 
 export const app = fastify()
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
+  sign: {
+    experesIn: '10m', // 10 minutes validation JWT
+  },
 })
 app.register(usersRoutes)
 app.register(gymsRoutes)
 app.register(checkInsRoutes)
+app.register(fastifyCookie)
 app.setErrorHandler((Error, _, reply) => {
   if (Error instanceof ZodError) {
     // zodError é o tipo de error que o zod envia
