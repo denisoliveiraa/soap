@@ -11,8 +11,12 @@ export const app = fastify()
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
+  cookie: {
+    cookieName: 'refreshToken',
+    signed: false,
+  },
   sign: {
-    experesIn: '10m', // 10 minutes validation JWT
+    expiresIn: '10m',
   },
 })
 app.register(usersRoutes)
