@@ -18,20 +18,26 @@ model User {
   name          String
   email         String    @unique
   password_hash String
+  role          Role      @default(MEMBER)
   created_at    DateTime  @default(now())
   CheckIns      CheckIn[]
 
   @@map("users")
 }
 
+enum Role {
+  ADMIN
+  MEMBER
+}
+
 model CheckIn {
   id            String    @id @default(uuid())
   created_at    DateTime  @default(now())
-  validated_ate DateTime?
+  validated_at  DateTime?
   user          User      @relation(fields: [user_id], references: [id])
   gym           Gym       @relation(fields: [gym_id], references: [id])
   user_id       String
-  gym_id         String
+  gym_id        String
 
   @@map("check_ins")
 }
@@ -43,7 +49,7 @@ model Gym {
   phone       String
   latitude    Decimal
   longitude   Decimal
-  CheckIns     CheckIn[]
+  CheckIns    CheckIn[]
 
   @@map("gyms")
 }
